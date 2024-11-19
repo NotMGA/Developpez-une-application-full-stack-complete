@@ -1,0 +1,106 @@
+.back-arrow {
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin: 20px;
+}
+
+.arrow-icon {
+  color: #6a0dad; /* Violet foncé */
+  font-size: 2.5em; /* Taille légèrement plus grande pour une flèche visible */
+  font-weight: bold; /* Épaissir la flèche */
+}
+
+.back-arrow:hover .arrow-icon {
+  color: #4b0082; /* Couleur plus sombre au survol */
+}
+
+/* Conteneur de Création d'Article */
+.create-article-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style des Champs du Formulaire */
+.form-group {
+  margin-bottom: 20px;
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 3px solid #ccc; /* Bordure claire autour des champs */
+    border-radius: 10px; /* Coins arrondis */
+    background-color: transparent;
+    border-color: #7550ec;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+
+    &::placeholder {
+      color: #999; /* Texte du placeholder en gris clair */
+    }
+
+    &:focus {
+      outline: none; /* Supprime la bordure par défaut au focus */
+      border-color: #7550ec; /* Met en évidence la bordure au focus */
+    }
+  }
+}
+
+/* Style des Messages d'Erreur */
+.error {
+  color: #e53935; /* Rouge vif pour attirer l'attention sur l'erreur */
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+.button-container {
+  display: flex; /* Utilise Flexbox pour centrer le bouton */
+  justify-content: center; /* Centre le bouton horizontalement */
+  margin-top: 20px;
+}
+
+/* Style du Bouton de Soumission */
+.btn {
+  width: auto;
+  padding: 8px 16px;
+  background-color: #7550ec;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &.small-button {
+    font-size: 0.9em; /* Taille réduite du bouton */
+    padding: 8px 20px; /* Ajustement des dimensions du bouton */
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  &:hover:enabled {
+    background-color: #4b0082;
+  }
+}
+
+@media (max-width: 768px) {
+  .create-article-container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: -webkit-fill-available;
+  }
+}

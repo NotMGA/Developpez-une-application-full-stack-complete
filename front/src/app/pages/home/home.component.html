@@ -1,5 +1,17 @@
 <div class="center">
   <img src="/assets/logo_p6.png" alt="logo" />
   <h1>Welcome to MDD</h1>
-  <button mat-raised-button color="primary" (click)="start()">Commencer</button>
+  <div class="button-group">
+    <div class="button-group">
+      <!-- Bouton Connexion -->
+      <button mat-raised-button class="custom-button" (click)="goToLogin()">
+        Connexion
+      </button>
+
+      <!-- Bouton Inscription -->
+      <button mat-raised-button class="custom-button" (click)="goToRegister()">
+        Inscription
+      </button>
+    </div>
+  </div>
 </div>

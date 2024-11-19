@@ -1,0 +1,55 @@
+<app-header [isAuthPage]="true"></app-header>
+<div class="back-arrow" (click)="goBack()">
+  <span class="arrow-icon">&#8592;</span>
+</div>
+<div class="login-container">
+  <h2>Connexion</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+        "
+        class="error"
+      >
+        Veuillez entrer un email valide.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched
+        "
+        class="error"
+      >
+        Le mot de passe doit comporter au moins 6 caractères.
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="loginForm.invalid"
+    >
+      Se connecter
+    </button>
+  </form>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>

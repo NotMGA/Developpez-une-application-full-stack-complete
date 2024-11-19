@@ -1,0 +1,77 @@
+<app-header [isAuthPage]="false"></app-header>
+
+<div class="back-arrow" (click)="goBack()">
+  <span class="arrow-icon">&#8592;</span>
+  <!-- Flèche de retour -->
+</div>
+
+<div class="create-article-container">
+  <h2>Créer un Nouvel Article</h2>
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <!-- Sélectionner le Thème -->
+    <div class="form-group">
+      <select
+        id="subjectId"
+        formControlName="subjectId"
+        class="form-control"
+        required
+      >
+        <option value="" disabled selected>Choisir un Thème</option>
+        <option *ngFor="let subject of subjects" [value]="subject.id">
+          {{ subject.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Titre de l'Article -->
+    <div class="form-group">
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-control"
+        placeholder="Titre de l'Article"
+        required
+      />
+      <div
+        *ngIf="
+          articleForm.get('title')?.invalid && articleForm.get('title')?.touched
+        "
+        class="error"
+      >
+        Le titre de l'article est requis.
+      </div>
+    </div>
+
+    <!-- Contenu de l'Article -->
+    <div class="form-group">
+      <textarea
+        id="content"
+        formControlName="content"
+        class="form-control"
+        rows="8"
+        placeholder="Contenu de l'Article"
+        required
+      ></textarea>
+      <div
+        *ngIf="
+          articleForm.get('content')?.invalid &&
+          articleForm.get('content')?.touched
+        "
+        class="error"
+      >
+        Le contenu de l'article est requis.
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button
+        type="submit"
+        class="btn btn-primary small-button"
+        [disabled]="articleForm.invalid"
+      >
+        Créer l'Article
+      </button>
+    </div>
+  </form>
+</div>

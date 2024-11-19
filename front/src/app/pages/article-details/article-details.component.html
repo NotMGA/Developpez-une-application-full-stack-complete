@@ -1,0 +1,62 @@
+<app-header [isAuthPage]="false"></app-header>
+
+<div class="page-container">
+  <!-- Conteneur pour la flèche de retour -->
+  <div class="back-arrow-container">
+    <span class="arrow-icon back-arrow" (click)="goBack()">&#8592;</span>
+  </div>
+
+  <!-- Conteneur pour le reste du contenu de l'article -->
+  <div class="article-details-container">
+    <h2>{{ article?.title }}</h2>
+    <p class="meta">
+      Par {{ article?.authorName }} | Le
+      {{ article?.createdAt | date : "mediumDate" }} |
+      {{ article?.subjectName }}
+    </p>
+    <div class="content">{{ article?.content }}</div>
+
+    <!-- Section des Commentaires Existants -->
+    <div class="comments-section">
+      <div class="comments-separator"></div>
+      <h3>Commentaires</h3>
+      <div *ngFor="let comment of comments" class="comment">
+        <div class="comment-container">
+          <span class="comment-author">{{ comment.author }}:</span>
+          <span class="comment-content">{{ comment.content }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zone de Saisie pour Ajouter un Nouveau Commentaire -->
+    <div class="new-comment-section">
+      <div class="comment-input-container">
+        <mat-form-field class="new-comment-field" appearance="outline">
+          <input
+            matInput
+            placeholder="Écrire un commentaire..."
+            [(ngModel)]="newComment"
+            name="comment"
+            required
+          />
+        </mat-form-field>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="postComment()"
+          [disabled]="!newComment"
+        >
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section de Chargement si l'Article n'est pas Encore Chargé -->
+    <div *ngIf="!article && !errorMessage" class="loading">
+      Chargement des détails de l'article...
+    </div>
+
+    <!-- Message d'Erreur -->
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</div>

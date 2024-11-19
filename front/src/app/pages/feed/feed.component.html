@@ -1,0 +1,36 @@
+<app-header [isAuthPage]="false"></app-header>
+<div class="feed-container">
+  <div class="feed-header">
+    <button class="btn-create" (click)="createArticle()">
+      Créer un article
+    </button>
+    <div class="sort-options">
+      <span class="sort-text" (click)="sortArticlesByDate()">
+        Trier par date
+        <span *ngIf="isSortedDescending">▼</span>
+        <span *ngIf="!isSortedDescending">▲</span>
+      </span>
+    </div>
+  </div>
+
+  <div *ngIf="articles.length > 0; else noArticles" class="articles-container">
+    <div
+      *ngFor="let article of articles"
+      class="article-card"
+      (click)="viewDetails(article.id)"
+    >
+      <h3 class="article-title">{{ article.title }}</h3>
+      <p class="article-meta">
+        Par <span class="author">{{ article.authorName }}</span> | Le
+        {{ article.createdAt | date : "mediumDate" }}
+      </p>
+      <p class="article-excerpt">{{ article.content | slice : 0 : 100 }}...</p>
+    </div>
+  </div>
+
+  <ng-template #noArticles>
+    <p class="no-articles">Aucun article disponible pour le moment.</p>
+  </ng-template>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>

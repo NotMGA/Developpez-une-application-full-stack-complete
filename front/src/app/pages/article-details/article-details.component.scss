@@ -1,0 +1,137 @@
+.article-details-container {
+  flex: 1;
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .meta {
+    font-size: 1em;
+  }
+
+  .content {
+    margin: 20px 0;
+    line-height: 1.6;
+  }
+
+  .comments-section {
+    margin-top: 20px;
+    /* Limite la largeur totale de la section */
+    margin-left: auto; /* Centre horizontalement la section */
+    margin-right: auto; /* Centre horizontalement la section */
+    padding: 20px; /* Ajoute un peu de padding pour plus de confort visuel */
+    position: relative; /* Pour positionner correctement la barre */
+  }
+
+  .comment-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Espace supplémentaire entre les commentaires */
+    align-items: normal;
+  }
+
+  .comment-author {
+    margin-right: 30px;
+  }
+
+  .comment-content {
+    background-color: #f0f0f0; /* Fond gris clair */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    height: 50px; /* Taille fixe pour la bulle de commentaire */
+    max-width: 800px; /* S’assure que la bulle ne dépasse pas la largeur de l’écran */
+    word-wrap: break-word; /* Permet de couper les mots si nécessaire pour éviter le débordement */
+    display: inline-block;
+  }
+
+  .comments-separator {
+    height: 2px; /* Épaisseur de la barre */
+    background-color: #000; /* Couleur de la barre */
+    margin-bottom: 20px; /* Espace en dessous de la barre */
+  }
+
+  .loading {
+    font-size: 1.2em;
+    color: #999;
+  }
+
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+}
+
+.back-arrow {
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin: 20px;
+}
+
+.arrow-icon {
+  color: #6a0dad; /* Violet foncé */
+  font-size: 2.5em; /* Taille légèrement plus grande pour une flèche visible */
+  font-weight: bold; /* Épaissir la flèche */
+}
+
+.new-comment-section {
+  margin-top: 20px;
+  /* Correspond à la largeur de la section des commentaires */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comment-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.new-comment-field {
+  flex-grow: 1; /* Remplit tout l'espace disponible */
+  margin-right: 10px; /* Espace entre le champ de saisie et le bouton d'envoi */
+}
+
+.title-container {
+  display: flex;
+  align-items: center; /* Aligne la flèche et le titre sur la même ligne */
+}
+
+.back-arrow {
+  cursor: pointer;
+  font-size: 24px; /* Taille de la flèche */
+  margin-right: 10px; /* Espace entre la flèche et le titre */
+}
+
+.back-arrow-container {
+  /* Couleur de fond pour distinguer la zone de la flèche */
+  display: flex;
+
+  padding: 0 10px;
+}
+
+.article-title {
+  margin: 0; /* Enlève les marges par défaut pour un alignement parfait */
+}
+
+.page-container {
+  display: flex;
+  height: 100vh; /* Prend toute la hauteur de la page */
+}
+
+@media (max-width: 768px) {
+  .article-details-container .article-details-container {
+    padding: 0;
+    padding-top: 5px;
+  }
+  .comment-content {
+    width: 150px;
+  }
+  .back-arrow {
+    margin: 0;
+    margin-top: 20px;
+  }
+}

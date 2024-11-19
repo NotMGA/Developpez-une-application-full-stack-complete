@@ -1,0 +1,124 @@
+/* Style pour la flèche de retour */
+.back-arrow {
+  margin: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.arrow-icon {
+  color: #7550ec; /* Violet foncé */
+  font-size: 3em; /* Taille augmentée pour une flèche plus grande */
+  font-weight: bold; /* Épaissir la flèche */
+}
+
+.back-arrow:hover .arrow-icon {
+  color: #7550ec; /* Couleur plus sombre au survol */
+}
+
+/* Conteneur de connexion */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+
+  margin: 0px auto 0px auto; /* Centre le formulaire horizontalement et ajoute de l'espace en haut */
+  padding: 20px;
+  border: 1px solid #6a0dad;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  position: relative; /* Nécessaire pour la flèche de retour */
+}
+
+/* ... Reste du CSS comme précédemment ... */
+
+/* Titre du formulaire */
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #7550ec; /* Couleur violet foncé */
+}
+
+/* Style des champs du formulaire */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #333; /* Couleur de texte légèrement foncée */
+  display: block; /* Assure que le label est au-dessus du champ */
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #7550ec; /* Bordure violette */
+  border-radius: 5px; /* Coins arrondis */
+  box-sizing: border-box;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #7550ec; /* Change la couleur de la bordure lorsqu'on clique dans le champ */
+  outline: none; /* Supprime la bordure par défaut */
+}
+
+/* Style des messages d'erreur */
+.error {
+  color: #e53935; /* Rouge vif pour attirer l'attention sur l'erreur */
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+/* Style du bouton de soumission */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #6a0dad; /* Violet foncé pour le bouton principal */
+  color: #fff; /* Texte en blanc */
+  border: none;
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+  background-color: #ccc; /* Couleur grise lorsqu'il est désactivé */
+  cursor: not-allowed; /* Montre que le bouton est désactivé */
+}
+
+.btn:hover:enabled {
+  background-color: #4b0082; /* Couleur encore plus sombre lors du survol, si activé */
+}
+
+p.error {
+  text-align: center;
+  color: #e53935;
+  font-weight: bold;
+}
+
+/* Style général pour les écrans plus petits */
+@media (max-width: 768px) {
+  .login-container {
+    max-width: 90%; /* Réduire la largeur pour s'adapter aux écrans plus petits */
+    padding: 15px; /* Réduire l'espace de remplissage */
+    margin: 20px auto; /* Ajouter un peu plus d'espace en haut et en bas */
+  }
+
+  h2 {
+    font-size: 1.5em; /* Diminuer la taille du texte du titre */
+  }
+
+  .form-control {
+    padding: 8px; /* Réduire le remplissage des champs du formulaire */
+  }
+
+  .btn {
+    padding: 8px; /* Réduire le remplissage du bouton */
+  }
+}
+
+/* Pour les très petits écrans (téléphones) */

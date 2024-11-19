@@ -1,0 +1,35 @@
+.theme-card {
+  background-color: #f5f5f5; // Fond gris clair
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .theme-title {
+    display: flex;
+    justify-content: flex-start; // Positionne le titre en haut à gauche
+    align-items: flex-start;
+
+    mat-card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  mat-card-content {
+    padding-top: 16px;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+  }
+
+  .theme-action-button {
+    background-color: #7550ec !important; // Fond du bouton violet
+    color: #ffffff !important; // Texte du bouton en blanc
+  }
+}

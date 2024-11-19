@@ -1,0 +1,50 @@
+<app-header [isAuthPage]="false"></app-header>
+<div class="user-profile-container">
+  <div class="edit-profile">
+    <h2>Modifier le Profil</h2>
+    <form (ngSubmit)="onSaveProfile()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nom d'utilisateur</mat-label>
+        <input matInput [(ngModel)]="user.username" name="username" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          [(ngModel)]="user.email"
+          name="email"
+          type="email"
+          required
+        />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">
+        Sauvegarder
+      </button>
+      <p class="logout" (click)="logout()">Se déconnecter</p>
+    </form>
+  </div>
+
+  <hr class="separator" />
+
+  <div class="subscriptions">
+    <h2>Mes Abonnements aux Thèmes</h2>
+    <div *ngIf="subscriptions.length > 0; else noSubscriptions">
+      <div class="themes-grid">
+        <app-theme-card
+          *ngFor="let subscription of subscriptions"
+          [theme]="subscription"
+          [isProfilePage]="true"
+          (unsubscribe)="unsubscribeFromTheme($event)"
+        ></app-theme-card>
+      </div>
+    </div>
+
+    <ng-template #noSubscriptions>
+      <p>Vous n'êtes abonné à aucun thème pour le moment.</p>
+    </ng-template>
+
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</div>

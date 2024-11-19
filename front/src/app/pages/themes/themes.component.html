@@ -1,0 +1,21 @@
+<app-header [isAuthPage]="false"></app-header>
+<div class="themes-container">
+  <div *ngIf="subjects.length > 0; else noSubjects">
+    <div class="themes-grid">
+      <app-theme-card
+        *ngFor="let subject of subjects"
+        [theme]="subject"
+        [isProfilePage]="false"
+        (subscribe)="subscribeToSubject($event)"
+        class="theme-item"
+      >
+      </app-theme-card>
+    </div>
+  </div>
+
+  <ng-template #noSubjects>
+    <p>Aucun thème disponible pour le moment.</p>
+  </ng-template>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>

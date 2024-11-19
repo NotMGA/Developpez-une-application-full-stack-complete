@@ -1,20 +1,69 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'; // Import du AppRoutingModule
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FeedComponent } from './pages/feed/feed.component';
+import { CommonModule } from '@angular/common';
+import { AuthInterceptor } from './services/auth.interceptor';
+
+// Import des composants
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreateArticleComponent } from './pages/create-article/create-article.component';
+import { FormsModule } from '@angular/forms';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { ThemesComponent } from './pages/themes/themes.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ThemeCardComponent } from './components/theme-card/theme-card.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    FeedComponent,
+    ArticleDetailsComponent,
+    CreateArticleComponent,
+    ThemesComponent,
+    HeaderComponent,
+    ThemeCardComponent,
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule, // Utilisation du module de routage
+    ReactiveFormsModule, // Pour les formulaires réactifs
+    HttpClientModule, // Pour les appels HTTP
+    CommonModule,
     BrowserAnimationsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     MatButtonModule,
+    MatDividerModule,
+    FormsModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,124 @@
+/* Styles de base pour le header et la navbar */
+.main-header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  position: relative;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo .logo-image {
+  max-width: 100px;
+  height: auto;
+}
+
+/* Cacher le bouton de menu et la navbar par défaut */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2em;
+}
+
+.navbar-right {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  background-color: #fff;
+  flex-direction: column;
+  width: 100px; /* Largeur du menu */
+  height: 100vh;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.navbar-right.show-menu {
+  display: flex;
+  transform: translateX(0);
+}
+
+/* Styles pour les liens du menu */
+.navbar-links {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+}
+
+.navbar-links li {
+  margin: 10px 5px;
+  text-align: right;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+}
+
+.navbar-links a.active-link {
+  color: #007bff;
+}
+
+.navbar-links a:hover {
+  color: #0056b3;
+}
+
+.profile-icon {
+  margin-top: 20px;
+  text-align: right;
+  width: 100%;
+}
+
+.profile-icon a {
+  color: #7550ec;
+  font-size: 24px;
+}
+
+.profile-icon a:hover {
+  color: #007bff;
+}
+
+/* Afficher le bouton de menu et cacher les liens sur les petits écrans */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar-right {
+    display: none; /* Masquer complètement le menu par défaut */
+  }
+
+  .navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    display: block;
+  }
+}
+
+/* Afficher la barre de navigation normalement sur les écrans plus grands */
+@media (min-width: 769px) {
+  .navbar-right {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}

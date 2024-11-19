@@ -1,0 +1,32 @@
+<header class="main-header">
+  <nav class="navbar">
+    <!-- Logo à gauche -->
+    <div class="navbar-logo">
+      <a routerLink="/feed">
+        <img src="assets/logo_p6.png" alt="Logo" class="logo-image" />
+      </a>
+    </div>
+
+    <!-- Bouton de menu pour les écrans mobiles -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Menu de navigation -->
+    <div [ngClass]="{ 'navbar-right': true, 'show-menu': isMenuOpen }">
+      <ul class="navbar-links">
+        <li>
+          <a routerLink="/feed" routerLinkActive="active-link">Articles</a>
+        </li>
+        <li>
+          <a routerLink="/themes" routerLinkActive="active-link">Thèmes</a>
+        </li>
+      </ul>
+      <div class="profile-icon">
+        <a routerLink="/profile">
+          <mat-icon>account_circle</mat-icon>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

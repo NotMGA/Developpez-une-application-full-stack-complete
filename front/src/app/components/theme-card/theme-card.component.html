@@ -1,0 +1,18 @@
+<mat-card class="theme-card">
+  <div class="theme-title">
+    <mat-card-title>{{ theme.name }}</mat-card-title>
+  </div>
+  <mat-card-content>
+    <p>{{ theme.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="handleAction()"
+      class="theme-action-button"
+    >
+      {{ isProfilePage ? "Se désabonner" : "S'abonner" }}
+    </button>
+  </mat-card-actions>
+</mat-card>
