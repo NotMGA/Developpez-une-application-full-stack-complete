@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * REST controller for managing posts. Provides endpoints to create posts,
+ * retrieve user feeds, and fetch posts by ID.
+ */
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
@@ -25,41 +29,54 @@ public class PostController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Creates a new post for a given subject.
+     *
+     * @param subjectId     the ID of the subject associated with the post.
+     * @param createPostDTO the data transfer object containing post details.
+     * @return a {@link ResponseEntity} containing the created post as a DTO, or an
+     *         error status if the operation fails.
+     */
     @PostMapping
     public ResponseEntity<PostDTO> createPost(@RequestParam Long subjectId, @RequestBody CreatePostDTO createPostDTO) {
-        // Obtenir l'email de l'utilisateur authentifié
+        // Get the email of the authenticated user
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         if (username == null || username.equals("anonymousUser")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Unauthorized
         }
 
-        // Rechercher l'utilisateur par email
+        // Find the user by email
         User user = userService.findByEmail(username);
         if (user == null || user.getId() == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Utilisateur non trouvé
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // User not found
         }
 
-        // Vérifiez si l'ID du sujet est null
+        // Check if subjectId is null
         if (subjectId == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); // Subject ID non fourni
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); // Subject ID not provided
         }
 
-        // Assigner subjectId à createPostDTO
+        // Assign subjectId to createPostDTO
         createPostDTO.setSubjectId(subjectId);
 
-        // Créer le post
+        // Create the post
         Post createdPost;
         try {
             createdPost = postService.createPost(createPostDTO, user);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Erreur lors de la création du
-                                                                                       // post
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Error creating post
         }
 
         return ResponseEntity.ok(convertToDTO(createdPost));
     }
 
+    /**
+     * Retrieves the authenticated user's post feed.
+     *
+     * @return a {@link ResponseEntity} containing a list of the user's posts as
+     *         DTOs, or an error status if the operation fails.
+     */
     @GetMapping("/feed")
     public ResponseEntity<List<PostDTO>> getUserFeed() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -70,7 +87,7 @@ public class PostController {
 
         User user = userService.findByEmail(username);
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Utilisateur non trouvé
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // User not found
         }
 
         List<Post> userFeed = postService.getUserFeed(user.getId());
@@ -78,15 +95,28 @@ public class PostController {
         return ResponseEntity.ok(userFeedDTO);
     }
 
+    /**
+     * Retrieves a post by its ID.
+     *
+     * @param id the ID of the post to retrieve.
+     * @return a {@link ResponseEntity} containing the post as a DTO, or a 404
+     *         status if the post is not found.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<PostDTO> getPostById(@PathVariable Long id) {
         Post post = postService.getPostById(id);
         if (post == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Post non trouvé
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Post not found
         }
         return ResponseEntity.ok(convertToDTO(post));
     }
 
+    /**
+     * Converts a {@link Post} entity to a {@link PostDTO}.
+     *
+     * @param post the post entity to convert.
+     * @return the converted post as a DTO.
+     */
     private PostDTO convertToDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());

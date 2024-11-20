@@ -15,6 +15,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Collections;
 
+/**
+ * REST controller for managing subjects. Provides endpoints to retrieve
+ * subjects,
+ * subscribe or unsubscribe to subjects, and retrieve user-specific
+ * subscriptions.
+ */
 @RestController
 @RequestMapping("/api/subjects")
 public class SubjectController {
@@ -25,18 +31,36 @@ public class SubjectController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Retrieves all subjects.
+     *
+     * @return a {@link ResponseEntity} containing a list of all subjects as DTOs.
+     */
     @GetMapping
     public ResponseEntity<List<SubjectDTO>> getAllSubjects() {
         List<SubjectDTO> subjects = subjectService.getAllSubjects();
         return ResponseEntity.ok(subjects);
     }
 
+    /**
+     * Retrieves a specific subject by its ID.
+     *
+     * @param id the ID of the subject to retrieve.
+     * @return a {@link ResponseEntity} containing the subject as a DTO.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<SubjectDTO> getSubjectById(@PathVariable Long id) {
         SubjectDTO subjectDTO = subjectService.getSubjectById(id);
         return ResponseEntity.ok(subjectDTO);
     }
 
+    /**
+     * Subscribes the authenticated user to a specific subject.
+     *
+     * @param id the ID of the subject to subscribe to.
+     * @return a {@link ResponseEntity} containing a success message or an error
+     *         message.
+     */
     @PostMapping("/{id}/subscribe")
     public ResponseEntity<Map<String, String>> subscribeToSubject(@PathVariable Long id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -60,6 +84,13 @@ public class SubjectController {
         }
     }
 
+    /**
+     * Unsubscribes the authenticated user from a specific subject.
+     *
+     * @param id the ID of the subject to unsubscribe from.
+     * @return a {@link ResponseEntity} containing a success message or an error
+     *         message.
+     */
     @DeleteMapping("/{id}/unsubscribe")
     public ResponseEntity<Map<String, String>> unsubscribeFromSubject(@PathVariable Long id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -83,6 +114,12 @@ public class SubjectController {
         }
     }
 
+    /**
+     * Retrieves the list of subjects the authenticated user is subscribed to.
+     *
+     * @return a {@link ResponseEntity} containing a list of subscribed subjects as
+     *         DTOs.
+     */
     @GetMapping("/subscriptions")
     public ResponseEntity<List<SubjectDTO>> getUserSubscriptions() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

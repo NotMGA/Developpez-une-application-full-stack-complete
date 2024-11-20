@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * REST controller for managing user-related operations, including registration,
+ * login,
+ * profile retrieval, and profile updates.
+ */
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -25,7 +30,14 @@ public class UserController {
     @Autowired
     private JwtUtils jwtUtils;
 
-    // Endpoint d'inscription
+    /**
+     * Registers a new user.
+     *
+     * @param userRegistrationDTO the data transfer object containing registration
+     *                            details (email, username, password).
+     * @return a {@link ResponseEntity} containing a success message or an error
+     *         message in case of failure.
+     */
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> registerUser(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         try {
@@ -40,7 +52,15 @@ public class UserController {
         }
     }
 
-    // Endpoint de connexion
+    /**
+     * Authenticates a user and generates a JWT token upon successful login.
+     *
+     * @param userLoginDTO the data transfer object containing login credentials
+     *                     (email and password).
+     * @return a {@link ResponseEntity} containing a JWT token if authentication is
+     *         successful,
+     *         or an error message if authentication fails.
+     */
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
         boolean isAuthenticated = userService.loginUser(userLoginDTO.getEmail(), userLoginDTO.getPassword());
@@ -52,6 +72,13 @@ public class UserController {
         }
     }
 
+    /**
+     * Retrieves the profile of the currently authenticated user.
+     *
+     * @return a {@link ResponseEntity} containing the user's profile details as a
+     *         {@link UserProfileDTO},
+     *         or an error status if the user is not authenticated or not found.
+     */
     @GetMapping("/profile")
     public ResponseEntity<UserProfileDTO> getUserProfile() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -62,7 +89,7 @@ public class UserController {
 
         User userProfile = userService.findByEmail(username);
         if (userProfile == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Utilisateur non trouvé
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // User not found
         }
 
         UserProfileDTO userProfileDTO = new UserProfileDTO();
@@ -72,7 +99,15 @@ public class UserController {
         return ResponseEntity.ok(userProfileDTO);
     }
 
-    // Endpoint pour mettre à jour le profil de l'utilisateur connecté
+    /**
+     * Updates the profile of the currently authenticated user.
+     *
+     * @param userUpdatesDTO the data transfer object containing updated user
+     *                       information (email, username).
+     * @return a {@link ResponseEntity} containing the updated user's profile
+     *         details as a {@link UserProfileDTO},
+     *         or an error status if the user is not authenticated or not found.
+     */
     @PutMapping("/profile")
     public ResponseEntity<UserProfileDTO> updateUserProfile(@RequestBody UserProfileDTO userUpdatesDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -83,7 +118,7 @@ public class UserController {
 
         User user = userService.findByEmail(username);
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Utilisateur non trouvé
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // User not found
         }
 
         User updatedUser = userService.updateUserProfile(user.getId(), userUpdatesDTO);
