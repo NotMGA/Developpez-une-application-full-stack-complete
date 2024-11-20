@@ -2,15 +2,57 @@ package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.UserProfileDTO;
 import com.openclassrooms.mddapi.model.User;
+import com.openclassrooms.mddapi.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
-    User registerUser(User user);
+@Service
+public class UserService {
 
-    User findByEmail(String email);
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    boolean loginUser(String email, String password);
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    User getUserProfile(Long userId);
+    public User registerUser(User user) {
+        // Vérifiez si l'email est déjà utilisé
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already in use");
+        }
+        // Encodez le mot de passe avant de l'enregistrer
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
 
-    User updateUserProfile(Long userId, UserProfileDTO userUpdatesDTO);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
+
+    public boolean loginUser(String email, String password) {
+        User existingUser = userRepository.findByEmail(email).orElse(null);
+        return existingUser != null && passwordEncoder.matches(password, existingUser.getPassword());
+    }
+
+    public User getUserProfile(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public User updateUserProfile(Long userId, UserProfileDTO userUpdatesDTO) {
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (userUpdatesDTO.getEmail() != null && !userUpdatesDTO.getEmail().isEmpty()) {
+            existingUser.setEmail(userUpdatesDTO.getEmail());
+        }
+
+        if (userUpdatesDTO.getUsername() != null && !userUpdatesDTO.getUsername().isEmpty()) {
+            existingUser.setUsername(userUpdatesDTO.getUsername());
+        }
+
+        return userRepository.save(existingUser);
+    }
 }
