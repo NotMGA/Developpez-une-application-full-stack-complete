@@ -1,59 +1,19 @@
 package com.openclassrooms.mddapi.dto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
+@Data // Génère les getters, setters, toString, equals, hashCode
+@NoArgsConstructor // Génère un constructeur sans arguments
+@AllArgsConstructor // Génère un constructeur avec tous les arguments
+@Builder // Permet d'utiliser le pattern Builder pour créer des instances de PostDTO
 public class PostDTO {
     private Long id;
     private String title;
     private String content;
     private String authorName;
     private String subjectName;
-    private String createdAt;
-
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getSubjectName() {
-        return subjectName;
-    }
-
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
+    private String createdAt; // Format de la date en String pour lisibilité
 }

@@ -41,6 +41,14 @@
         <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
 
+	    <!-- Lombok -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.24</version> <!-- Utilisez la dernière version disponible -->
+        <scope>provided</scope>
+    </dependency>
+
     <!-- Dépendance pour JWT si vous souhaitez l'utiliser -->
     <dependency>
         <groupId>io.jsonwebtoken</groupId>

@@ -2,9 +2,18 @@ package com.openclassrooms.mddapi.model;
 
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 import java.time.LocalDateTime;
 
 @Entity
+@Data // Génère les getters, setters, toString, equals, hashCode
+@NoArgsConstructor // Génère un constructeur sans arguments
+@AllArgsConstructor // Génère un constructeur avec tous les arguments
+@Builder // Permet d'utiliser le pattern Builder pour créer des instances de Comment
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,46 +32,5 @@ public class Comment {
     private String content;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
-
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

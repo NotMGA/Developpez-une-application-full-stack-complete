@@ -1,10 +1,19 @@
 package com.openclassrooms.mddapi.model;
 
 import javax.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 import java.util.List;
 
 @Entity
 @Table(name = "subjects")
+@Data // Génère les getters, setters, toString, equals, hashCode
+@NoArgsConstructor // Génère un constructeur sans arguments
+@AllArgsConstructor // Génère un constructeur avec tous les arguments
+@Builder // Permet d'utiliser le pattern Builder pour créer des instances de Subject
 public class Subject {
 
     @Id
@@ -18,37 +27,4 @@ public class Subject {
 
     @ManyToMany(mappedBy = "subscriptions")
     private List<User> users;
-
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }
