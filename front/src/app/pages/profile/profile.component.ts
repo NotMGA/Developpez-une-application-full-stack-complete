@@ -10,7 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   user: any = {};
+
   subscriptions: any[] = [];
+
   errorMessage: string = '';
 
   constructor(
@@ -24,6 +26,9 @@ export class ProfileComponent implements OnInit {
     this.loadUserSubscriptions();
   }
 
+  /**
+   * Loads the user's profile data from the backend.
+   */
   loadProfile(): void {
     this.userService.getUserProfile().subscribe(
       (response: any) => {
@@ -36,7 +41,9 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  // Charger les abonnements de l'utilisateur
+  /**
+   * Loads the list of subjects the user is subscribed to.
+   */
   loadUserSubscriptions(): void {
     this.subjectService.getUserSubscriptions().subscribe(
       (response: any) => {
@@ -49,7 +56,9 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  // Sauvegarder les modifications de profil utilisateur
+  /**
+   * Saves updates to the user's profile by sending the updated data to the backend.
+   */
   onSaveProfile(): void {
     this.userService.updateUserProfile(this.user).subscribe(
       () => {
@@ -62,12 +71,15 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  // Se désabonner d'un thème
+  /**
+   * Unsubscribes the user from a specific theme.
+   * @param themeId The ID of the theme to unsubscribe from.
+   */
   unsubscribeFromTheme(themeId: number): void {
     this.subjectService.unsubscribeFromSubject(themeId).subscribe(
       () => {
         alert('Désabonné du thème avec succès.');
-        this.loadUserSubscriptions(); // Recharger la liste des abonnements
+        this.loadUserSubscriptions(); // Reload subscriptions to reflect changes
       },
       (error) => {
         console.error('Erreur lors du désabonnement', error);
@@ -76,9 +88,11 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  // Se déconnecter
+  /**
+   * Logs out the user by clearing the authentication token and redirecting to the login page.
+   */
   logout(): void {
     this.authService.clearToken();
-    window.location.href = '/login'; // Redirection vers la page de connexion après déconnexion
+    window.location.href = '/login'; // Redirect to login page
   }
 }

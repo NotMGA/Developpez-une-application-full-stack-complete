@@ -4,32 +4,32 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px; /* Ajout de padding pour les écrans étroits */
-  text-align: center; /* Centre le contenu pour les écrans étroits */
+  padding: 20px;
+  text-align: center;
 }
 
 .button-group {
   display: flex;
-  flex-wrap: wrap; /* Permet aux boutons de s'enrouler sur plusieurs lignes si nécessaire */
-  justify-content: center; /* Centre les boutons horizontalement */
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 20px;
 }
 
 .center img {
-  max-width: 100%; /* L'image ne sera jamais plus large que son conteneur */
-  height: auto; /* Maintient le ratio de l'image */
-  margin-bottom: 20px; /* Espace sous l'image */
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .custom-button {
   background-color: white;
   padding: 16px 43px;
-  margin: 10px; /* Modifie la marge pour être plus petite */
+  margin: 10px;
   border-radius: 29px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  font-size: 1rem; /* Taille de police pour une meilleure lisibilité */
+  font-size: 1rem;
 }
 
 .custom-button:hover {
@@ -41,18 +41,17 @@
   outline: none;
 }
 
-/* Media queries pour les petits écrans */
 @media (max-width: 768px) {
   .custom-button {
-    padding: 12px 30px; /* Réduit le padding pour les petits écrans */
-    font-size: 0.9rem; /* Réduit la taille de la police */
+    padding: 12px 30px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .custom-button {
-    padding: 10px 20px; /* Encore plus petit padding pour les écrans très étroits */
-    font-size: 0.8rem; /* Taille de police réduite */
+    padding: 10px 20px;
+    font-size: 0.8rem;
   }
   .button-group {
     flex-direction: column;

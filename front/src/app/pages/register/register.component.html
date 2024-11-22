@@ -1,78 +1,17 @@
 <app-header [isAuthPage]="true"></app-header>
 <div class="back-arrow" (click)="goBack()">
   <span class="arrow-icon">&#8592;</span>
-  <!-- Flèche sans texte -->
 </div>
 
 <div class="register-container">
   <h2>Inscription</h2>
-  <form [formGroup]="registerForm" (ngSubmit)="register()">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
-        class="form-control"
-      />
-      <div
-        *ngIf="
-          registerForm.get('email')?.invalid &&
-          registerForm.get('email')?.touched
-        "
-        class="error"
-      >
-        Veuillez entrer un email valide.
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="username">Nom d'utilisateur</label>
-      <input
-        type="text"
-        id="username"
-        formControlName="username"
-        class="form-control"
-      />
-      <div
-        *ngIf="
-          registerForm.get('username')?.invalid &&
-          registerForm.get('username')?.touched
-        "
-        class="error"
-      >
-        Le nom d'utilisateur est requis.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        class="form-control"
-      />
-      <div
-        *ngIf="
-          registerForm.get('password')?.invalid &&
-          registerForm.get('password')?.touched
-        "
-        class="error"
-      >
-        Le mot de passe doit comporter au moins 8 caractères, dont une lettre
-        majuscule, une minuscule, un chiffre et un caractère spécial.
-      </div>
-    </div>
-
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="registerForm.invalid"
-    >
-      S'inscrire
-    </button>
-  </form>
+  <!-- Reusable form component -->
+  <app-form
+    [formGroup]="registerForm"
+    [fields]="fields"
+    (formSubmit)="onRegisterSubmit($event)"
+  ></app-form>
 
   <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 </div>

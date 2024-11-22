@@ -16,18 +16,18 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+    // Retrieve the token from local storage
     const token = localStorage.getItem('token');
 
     if (token) {
-      // Vérifiez si l'utilisateur essaie d'accéder à la page d'accueil
+      // If the user is authenticated and trying to access the home route ('/'), redirect to "feed"
       if (state.url === '/') {
-        // Redirigez vers "feed" s'il est authentifié
         this.router.navigate(['/feed']);
         return false;
       }
-      return true; // Autorisez l'accès aux autres routes
+      return true;
     } else {
-      // Redirigez vers "login" s'il n'est pas authentifié
+      // If no token is found, redirect the user to the "login" page
       this.router.navigate(['/login']);
       return false;
     }

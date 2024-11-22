@@ -6,16 +6,15 @@
 }
 
 .arrow-icon {
-  color: #6a0dad; /* Violet foncé */
-  font-size: 2.5em; /* Taille légèrement plus grande pour une flèche visible */
-  font-weight: bold; /* Épaissir la flèche */
+  color: #6a0dad;
+  font-size: 2.5em;
+  font-weight: bold;
 }
 
 .back-arrow:hover .arrow-icon {
-  color: #4b0082; /* Couleur plus sombre au survol */
+  color: #4b0082;
 }
 
-/* Conteneur de Création d'Article */
 .create-article-container {
   width: 100%;
   max-width: 600px;
@@ -30,7 +29,6 @@
   }
 }
 
-/* Style des Champs du Formulaire */
 .form-group {
   margin-bottom: 20px;
 
@@ -39,8 +37,8 @@
   textarea {
     width: 100%;
     padding: 10px;
-    border: 3px solid #ccc; /* Bordure claire autour des champs */
-    border-radius: 10px; /* Coins arrondis */
+    border: 3px solid #ccc;
+    border-radius: 10px;
     background-color: transparent;
     border-color: #7550ec;
     color: #333;
@@ -48,29 +46,27 @@
     transition: border-color 0.3s ease-in-out;
 
     &::placeholder {
-      color: #999; /* Texte du placeholder en gris clair */
+      color: #999;
     }
 
     &:focus {
-      outline: none; /* Supprime la bordure par défaut au focus */
-      border-color: #7550ec; /* Met en évidence la bordure au focus */
+      outline: none;
+      border-color: #7550ec;
     }
   }
 }
 
-/* Style des Messages d'Erreur */
 .error {
-  color: #e53935; /* Rouge vif pour attirer l'attention sur l'erreur */
+  color: #e53935;
   font-size: 0.875em;
   margin-top: 5px;
 }
 .button-container {
-  display: flex; /* Utilise Flexbox pour centrer le bouton */
-  justify-content: center; /* Centre le bouton horizontalement */
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
 }
 
-/* Style du Bouton de Soumission */
 .btn {
   width: auto;
   padding: 8px 16px;
@@ -83,8 +79,8 @@
   transition: background-color 0.3s ease;
 
   &.small-button {
-    font-size: 0.9em; /* Taille réduite du bouton */
-    padding: 8px 20px; /* Ajustement des dimensions du bouton */
+    font-size: 0.9em;
+    padding: 8px 20px;
   }
 
   &:disabled {

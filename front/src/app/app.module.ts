@@ -27,6 +27,7 @@ import { ThemesComponent } from './pages/themes/themes.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ThemeCardComponent } from './components/theme-card/theme-card.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +41,13 @@ import { ThemeCardComponent } from './components/theme-card/theme-card.component
     ThemesComponent,
     HeaderComponent,
     ThemeCardComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, // Utilisation du module de routage
-    ReactiveFormsModule, // Pour les formulaires réactifs
-    HttpClientModule, // Pour les appels HTTP
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
     MatCardModule,

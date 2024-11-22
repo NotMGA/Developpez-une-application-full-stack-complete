@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class FeedComponent implements OnInit {
   articles: any[] = [];
+
   errorMessage: string | null = null;
+
   isSortedDescending: boolean = true;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -19,7 +21,7 @@ export class FeedComponent implements OnInit {
   }
 
   loadFeed(): void {
-    const token = localStorage.getItem('token'); // Assurez-vous que le token est stocké dans le localStorage lors de la connexion
+    const token = localStorage.getItem('token'); // Retrieve the user's authentication token
     if (!token) {
       this.errorMessage =
         'Vous devez être connecté pour voir le fil d’actualité';
@@ -32,7 +34,7 @@ export class FeedComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.articles = response;
-          this.sortArticlesByDate();
+          this.sortArticlesByDate(); // Automatically sort articles by date on load
         },
         (error) => {
           console.error('Erreur lors du chargement du fil d’actualité', error);
@@ -41,17 +43,30 @@ export class FeedComponent implements OnInit {
       );
   }
 
+  /**
+   * Navigates to the details page of a specific article.
+   * @param postId The ID of the article to view details for.
+   */
   viewDetails(postId: number): void {
     this.router.navigate(['/article', postId]);
   }
+
+  /**
+   * Navigates to the article creation page.
+   */
   createArticle(): void {
-    // Navigation vers la page de création d'article
     this.router.navigate(['/create']);
   }
+
+  /**
+   * Sorts the articles by their creation date.
+   * Toggles between ascending and descending order on each call.
+   */
   sortArticlesByDate(): void {
-    // Inverse la valeur de `isSortedDescending` à chaque appel pour alterner l'ordre du tri
+    // Toggle the sorting order
     this.isSortedDescending = !this.isSortedDescending;
 
+    // Sort the articles based on the createdAt date
     this.articles.sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();

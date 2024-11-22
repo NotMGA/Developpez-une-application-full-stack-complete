@@ -15,12 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Collections;
 
-/**
- * REST controller for managing subjects. Provides endpoints to retrieve
- * subjects,
- * subscribe or unsubscribe to subjects, and retrieve user-specific
- * subscriptions.
- */
 @RestController
 @RequestMapping("/api/subjects")
 public class SubjectController {

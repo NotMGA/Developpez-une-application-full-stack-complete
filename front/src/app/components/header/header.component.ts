@@ -6,8 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  // Ajoute un input pour déterminer si l'utilisateur est sur une page spéciale (login, register)
+  /**
+   * When set to `true`, the navigation menu will be hidden, leaving only the logo visible.
+   */
   @Input() isAuthPage: boolean = false;
+
+  /**
+   * Controls the visibility of the navigation menu on mobile devices.
+   * Toggles between open and closed states when the menu button is clicked.
+   */
   isMenuOpen = false;
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;

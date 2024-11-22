@@ -21,7 +21,7 @@
       align-items: center;
 
       mat-form-field {
-        width: 70%; // Champ de saisie qui occupe 70% de la largeur du conteneur
+        width: 70%;
       }
     }
 
@@ -44,7 +44,7 @@
 
     .line {
       width: 50%;
-      border-bottom: 1px solid #000; // Ligne noire comme séparateur
+      border-bottom: 1px solid #000;
       border-radius: 2px;
     }
   }

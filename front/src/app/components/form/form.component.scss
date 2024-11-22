@@ -1,0 +1,74 @@
+/* Style des champs du formulaire */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #7550ec;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #7550ec;
+  outline: none;
+}
+
+.error {
+  color: #e53935;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #7550ec;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn:hover:enabled {
+  background-color: #4b0082;
+}
+
+h2 {
+  text-align: center;
+  color: #6a0dad;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .form-control {
+    padding: 8px;
+  }
+
+  .btn {
+    padding: 8px;
+  }
+}

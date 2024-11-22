@@ -1,0 +1,23 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div *ngFor="let field of fields" class="form-group">
+    <label [for]="field.name">{{ field.label }}</label>
+    <input
+      [type]="field.type"
+      [id]="field.name"
+      [formControlName]="field.name"
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        formGroup.get(field.name)?.invalid && formGroup.get(field.name)?.touched
+      "
+      class="error"
+    >
+      Veuillez entrer une valeur valide pour {{ field.label }}.
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid">
+    Soumettre
+  </button>
+</form>

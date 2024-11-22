@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 })
 export class CreateArticleComponent implements OnInit {
   articleForm: FormGroup;
+
   subjects: any[] = [];
 
   constructor(
@@ -45,31 +46,34 @@ export class CreateArticleComponent implements OnInit {
 
   onSubmit(): void {
     if (this.articleForm.valid) {
-      // Extraire les données du formulaire
+      // Extract form data
       const postData = {
         title: this.articleForm.value.title,
         content: this.articleForm.value.content,
       };
 
-      // Récupérer l'identifiant du sujet
+      // Retrieve the selected subject ID
       const subjectId = this.articleForm.value.subjectId;
 
-      // Appeler le service pour créer le post
+      // Call the service to create the post
       this.postService.createPost(postData, subjectId).subscribe(
         (response) => {
           console.log('Article créé avec succès', response);
-          // Vous pouvez rediriger ou afficher un message de succès ici
         },
         (error) => {
           console.error('Erreur lors de la création de l’article', error);
         }
       );
-      this.location.back();
+      this.location.back(); // Navigate back after submission
     } else {
       console.log('Formulaire invalide');
     }
   }
-  goBack() {
-    this.location.back(); // Retour à la page précédente
+
+  /**
+   * Navigates back to the previous page.
+   */
+  goBack(): void {
+    this.location.back();
   }
 }

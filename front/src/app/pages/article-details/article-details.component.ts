@@ -11,9 +11,12 @@ import { Location } from '@angular/common';
 })
 export class ArticleDetailsComponent implements OnInit {
   article: any;
+
   errorMessage: string = '';
+
   newComment: string = '';
-  comments: any[] = []; // Liste des commentaires
+
+  comments: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,14 +32,17 @@ export class ArticleDetailsComponent implements OnInit {
     }
   }
 
-  loadArticleDetails(postId: number) {
+  /**
+   * Loads the details of an article using the provided post ID.
+   * @param postId The ID of the article to load.
+   */
+  loadArticleDetails(postId: number): void {
     this.apiService.getPostById(postId).subscribe(
       (response) => {
         this.article = response;
         console.log('Détails de l’article chargés avec succès:', this.article);
         this.loadComments(postId);
       },
-
       (error) => {
         console.error(
           'Erreur lors du chargement des détails de l’article',
@@ -51,28 +57,28 @@ export class ArticleDetailsComponent implements OnInit {
       }
     );
   }
+
+  /**
+   * Posts a new comment for the current article.
+   */
   postComment(): void {
     if (this.newComment.trim() !== '') {
       const commentDTO = {
-        postId: this.article.id, // Récupérer l'id de l'article
+        postId: this.article.id, // Retrieve the article ID
         content: this.newComment,
       };
 
-      // Envoyer le commentaire via le service
       this.articleService.postComment(commentDTO).subscribe(
         (response: any) => {
           console.log('Commentaire envoyé avec succès', response);
 
-          // Vérifiez que `comments` est initialisé
+          // Ensure comments are initialized before adding the new comment
           if (!this.comments) {
             this.comments = [];
           }
 
-          // Ajouter le nouveau commentaire à la liste des commentaires
-          this.comments.push(response);
-
-          // Réinitialiser le champ de saisie après envoi
-          this.newComment = '';
+          this.comments.push(response); // Add the new comment to the list
+          this.newComment = ''; // Reset the input field
         },
         (error: any) => {
           console.error("Erreur lors de l'envoi du commentaire", error);
@@ -82,10 +88,14 @@ export class ArticleDetailsComponent implements OnInit {
     }
   }
 
-  loadComments(postId: number) {
+  /**
+   * Loads the comments associated with the current article.
+   * @param postId The ID of the article whose comments are to be loaded.
+   */
+  loadComments(postId: number): void {
     this.apiService.getCommentsByPost(postId).subscribe(
       (response) => {
-        this.comments = response; // Assurez-vous que `comments` est un tableau
+        this.comments = response; // Ensure `comments` is a valid array
         console.log('Commentaires chargés avec succès:', this.comments);
       },
       (error) => {
@@ -95,7 +105,10 @@ export class ArticleDetailsComponent implements OnInit {
     );
   }
 
-  goBack() {
-    this.location.back(); // Retour à la page précédente
+  /**
+   * Navigates back to the previous page.
+   */
+  goBack(): void {
+    this.location.back();
   }
 }

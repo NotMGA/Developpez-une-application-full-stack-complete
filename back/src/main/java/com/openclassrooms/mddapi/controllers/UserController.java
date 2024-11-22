@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.Map;
 
-/**
- * REST controller for managing user-related operations, including registration,
- * login,
- * profile retrieval, and profile updates.
- */
 @RestController
 @RequestMapping("/api/users")
 public class UserController {

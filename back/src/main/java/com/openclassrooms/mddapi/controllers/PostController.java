@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * REST controller for managing posts. Provides endpoints to create posts,
- * retrieve user feeds, and fetch posts by ID.
- */
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {

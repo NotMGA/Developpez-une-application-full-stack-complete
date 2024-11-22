@@ -16,10 +16,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * REST controller for managing comments. Provides endpoints to add comments and
- * retrieve comments for a specific post.
- */
 @RestController
 @RequestMapping("/api/comments")
 public class CommentController {

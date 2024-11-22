@@ -28,7 +28,7 @@ public class Post {
     private Subject subject;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore // Ignorer les commentaires pour éviter la récursion
+    @JsonIgnore
     private List<Comment> comments;
 
     @Column(nullable = false)

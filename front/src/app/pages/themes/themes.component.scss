@@ -1,12 +1,8 @@
 .themes-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); // Deux colonnes
-  gap: 16px; // Espacement entre les éléments de la grille
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   margin: 20px;
-}
-
-.theme-item {
-  // Styles spécifiques au thème peuvent être ajoutés ici si nécessaire
 }
 
 @media (max-width: 768px) {

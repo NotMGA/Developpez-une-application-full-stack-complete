@@ -8,12 +8,15 @@
     </div>
 
     <!-- Bouton de menu pour les écrans mobiles -->
-    <button class="menu-toggle" (click)="toggleMenu()">
+    <button class="menu-toggle" (click)="toggleMenu()" *ngIf="!isAuthPage">
       <mat-icon>menu</mat-icon>
     </button>
 
     <!-- Menu de navigation -->
-    <div [ngClass]="{ 'navbar-right': true, 'show-menu': isMenuOpen }">
+    <div
+      [ngClass]="{ 'navbar-right': true, 'show-menu': isMenuOpen }"
+      *ngIf="!isAuthPage"
+    >
       <ul class="navbar-links">
         <li>
           <a routerLink="/feed" routerLinkActive="active-link">Articles</a>

@@ -16,7 +16,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
-    @JsonIgnore // Ignorer la référence à Post pour éviter la récursion
+    @JsonIgnore
     private Post post;
 
     @Column(nullable = false)
