@@ -1,25 +1,60 @@
-# P6-Full-Stack-reseau-dev
+# README - Lancer le Frontend et le Backend du Projet
 
-## Front
+## Prérequis
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+Avant de lancer le projet, assurez-vous que vous avez installé les éléments suivants :
 
-Don't forget to install your node_modules before starting (`npm install`).
+- **Node.js** (v16+)
+- **Angular CLI**
+- **Java** (JDK 11+)
+- **Maven**
+- **MySQL** (ou un autre système de gestion de base de données)
 
-### Development server
+## Lancer le Backend (Spring Boot)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### 1. Configurer la base de données
 
-### Build
+- Assurez-vous que MySQL est en cours d'exécution.
+- Créez une base de données nommée `mddapi` (ou celle définie dans votre fichier de configuration).
+- Mettez à jour les informations de connexion dans `src/main/resources/application.properties` si nécessaire (username, password, URL).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 2. Construire et Lancer le Backend
 
-### Where to start
+- Naviguez dans le répertoire du projet backend :
+  ```sh
+  cd back
+  ```
+- Utilisez Maven pour compiler le projet et lancer l'application :
+  ```sh
+  mvn spring-boot:run
+  ```
+- Le backend sera accessible par défaut sur `http://localhost:8080`.
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+## Lancer le Frontend (Angular)
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+### 1. Installer les dépendances
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
+- Naviguez dans le répertoire du projet frontend :
+  ```sh
+  cd front
+  ```
+- Installez les dépendances avec npm :
+  ```sh
+  npm install
+  ```
 
-Good luck!
+### 2. Lancer l'application Angular
+
+- Pour lancer l'application en mode de développement :
+  ```sh
+  ng serve
+  ```
+- Le frontend sera accessible par défaut sur `http://localhost:4200`.
+
+## Accéder à l'application
+
+- Une fois le backend et le frontend lancés, ouvrez votre navigateur et accédez à `http://localhost:4200` pour utiliser l'application.
+
+
+
+
